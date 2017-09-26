@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+.product-show h1 {
+  height: 24px;
+  line-height: 1em;
+  color: #fefefe;
+  padding: 5px 0 0 30px;
+  margin-bottom: 23px;
+  font-size: 17px;
+  font-weight="bold";
+   
+  background: url(../img/index/bg-show.png) no-repeat;
+}
+
+
+.product-show h1 a {
+  
+  float: left;
+  margin: 1px 0 0 0;
+  
+}
+.show-list li {
+  margin-right: 56px;
+}
+.show-list .show-name {
+  color: #a1a3a8;
+  margin: 10px 0 2px;
+}
