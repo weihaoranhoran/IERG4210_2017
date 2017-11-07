@@ -157,13 +157,13 @@ $db = ierg4210_DB();
 		</div>
 	
 	<?php
-		$q = $db->query("SELECT name, price, description FROM products WHERE pid = 1;");
+		$q = $db->query("SELECT name, price, description FROM products WHERE pid = 3;");
 		$row = $q -> fetch(PDO::FETCH_ASSOC);
 		?>
       <div class="pro-img">
       <div id="tsShopContainer">
                     <div id="tsImgS">
-                        <a href="../img/apple2.jpg" title="Images" class="MagicZoom" id="MagicZoom"><img width="300" height="300" src="../img/apple2.jpg" /></a>
+                        <a href="../img/<?php echo $row['name']; ?>.jpg" title="Images" class="MagicZoom" id="MagicZoom"><img width="300" height="300" src="../img/<?php echo $row['name']; ?>.jpg" /></a>
                     </div>
                     <div id="tsPicContainer">
                         <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
@@ -171,9 +171,10 @@ $db = ierg4210_DB();
                             <ul>
                                 <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img height="42" width="42" src="../img/<?php echo $row['name']; ?>.jpg" tsImgS="../img/<?php echo $row['name']; ?>.jpg"</li>
                                 <li onclick="showPic(1)" rel="MagicZoom" class="tsSelectImg"><img height="42" width="42" src="../img/<?php echo $row['name']; ?>.jpg" tsImgS="../img/<?php echo $row['name']; ?>.jpg"</li>
-                                <li onclick="showPic(2)" rel="MagicZoom"><img height="42" width="42" src="../img/apple2.jpg" tsImgS="../img/apple2.jpg" /></li>
-                                <li onclick="showPic(3)" rel="MagicZoom"><img height="42" width="42" src="../img/apple2.jpg" tsImgS="../img/apple2.jpg" /></li>
-                                <li onclick="showPic(4)" rel="MagicZoom"><img height="42" width="42" src="../img/apple2.jpg" tsImgS="../img/apple2.jpg" /></li>
+                                <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img height="42" width="42" src="../img/<?php echo $row['name']; ?>.jpg" tsImgS="../img/<?php echo $row['name']; ?>.jpg"</li>
+                                <li onclick="showPic(1)" rel="MagicZoom" class="tsSelectImg"><img height="42" width="42" src="../img/<?php echo $row['name']; ?>.jpg" tsImgS="../img/<?php echo $row['name']; ?>.jpg"</li>
+                                <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img height="42" width="42" src="../img/<?php echo $row['name']; ?>.jpg" tsImgS="../img/<?php echo $row['name']; ?>.jpg"</li>
+                                <li onclick="showPic(1)" rel="MagicZoom" class="tsSelectImg"><img height="42" width="42" src="../img/<?php echo $row['name']; ?>.jpg" tsImgS="../img/<?php echo $row['name']; ?>.jpg"</li>
                                 
                             </ul>
                         </div>
@@ -288,7 +289,7 @@ $db = ierg4210_DB();
       <div class="goods-details">
         <ul class="goods-para">
           <li title="1">-permission number：330118010649</li>
-          <li title="2">-ingredients：red apple</li>
+          <li title="2">-ingredients：<?php echo $row['name']; ?></li>
           <li title="3">-save method：cold save</li>
           <li title="4">-duration：30 days</li>
           
@@ -297,11 +298,11 @@ $db = ierg4210_DB();
           <li title="6">-origion:China</li>
           
           <li title="7">-price: 51-100 USD</li>
-          <li title="8">-species: red apple</li>
+          <li title="8">-species: <?php echo $row['name']; ?></li>
         </ul>
-        <p class="goods-img"><img src="../img/apple2.jpg" width="760" height="465" alt="苹果" /></p>
-        <p class="goods-text">This kind of apple is very sweet</p>
-        <p class="goods-img"><img src="../img/apple2.jpg" width="760" height="465" alt="苹果" /></p>
+        <p class="goods-img"><img src="../img/<?php echo $row['name']; ?>.jpg" width="760" height="465" alt="苹果" /></p>
+       
+        <p class="goods-img"><img src="../img/<?php echo $row['name']; ?>.jpg" height="465" alt="苹果" /></p>
       </div>
       
     </div>
