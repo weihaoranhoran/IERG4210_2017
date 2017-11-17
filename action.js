@@ -1,16 +1,23 @@
 function add_to_cart(prod_id) {
 
     prod_id=prod_id.toString();
+	
+	
     if(localStorage.getItem("shopList"))
     {
+		
         var text=localStorage.getItem("shopList");
-        var obj=JSON.parse(text);
-        if(obj[prod_id])
+		var obj=JSON.parse(text);
+        if(obj[prod_id]){
             obj[prod_id]++;
+		}
         else
+		{
             obj[prod_id]=1;
-
-        var myJson=JSON.stringify(obj);
+			
+		}
+		
+		var myJson=JSON.stringify(obj);
         localStorage.setItem("shopList",myJson);
     }
 
@@ -38,32 +45,36 @@ function deleteFromCart(str) {
 
 function show_shop_list() {
     document.getElementById("host_shopList").innerHTML="";
-    var text=localStorage.getItem("shopList");
+   var text=localStorage.getItem("shopList");
    var myObj=JSON.parse(text);
+   
    var i=0;
    var quant=[];
-	var total=0;
+   document.getElementById("money").value="0";
    for(x in myObj)
-       quant.push(myObj[x]);/*
-   for(var j=0;j<quant.length;j++)
-       alert(quant[j]);*/
+       quant.push(myObj[x]);
+   //for(var j=0;j<quant.length;j++)
+     //  alert(quant[j]);
    for(ir in myObj) {
 
-       var total=parseFloat(document.getElementById("money").value);
+      // var total=parseFloat(document.getElementById("money").value);
        var xmlhttp = new XMLHttpRequest();
        xmlhttp.onreadystatechange = function() {
            if (this.readyState == 4 && this.status == 200) {
+			   
                var name_price=JSON.parse(this.responseText);
                var temp_id=Object.keys(name_price)[0];
-               the_li="<li>"+Object.keys(name_price)[1]+" $"+Object.values(name_price)[1]+"<span>-</span>"+"<input type='text' size='3' onkeyup='set_quant("+temp_id+",this.value)' value='"+Object.values(name_price)[0]+"' maxlength='3' pattern='^(0|([1-9]\\d{0,2}))$'/>"+"<span>+</span>"+"<br/>"+"<input type='button' value='Delete' onclick='deleteFromCart("+temp_id+")'>"+"</li>";
-               total=(parseInt(Object.values(name_price)[1])*parseInt(Object.values(name_price)[0]));
-               document.getElementById("cart").innerHTML+=(the_li);
-               document.getElementById("money").value=total.toString();
-               document.getElementById("total_price").innerHTML="<li>"+"Total: $"+total+"</li>";
+			   
+               the_li="<li>&nbsp&nbsp&nbsp&nbsp"+Object.keys(name_price)[1]+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp$&nbsp"+Object.values(name_price)[1]+"&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type='text' size='3' onkeyup='set_quant("+temp_id+",this.value)' value='"+Object.values(name_price)[0]+"' maxlength='3' pattern='^(0|([1-9]\\d{0,2}))$'/>"+"<br/>"+"&nbsp&nbsp&nbsp&nbsp&nbsp<input type='button' value='Delete' onclick='deleteFromCart("+temp_id+")'>"+"</li>";
+               document.getElementById("money").value=(parseFloat(document.getElementById("money").value)+(parseFloat(Object.values(name_price)[1])*parseInt(Object.values(name_price)[0]))).toString();
+               //total+=(parseInt(Object.values(name_price)[1])*parseInt(Object.values(name_price)[0]));
+               document.getElementById("host_shopList").innerHTML+=(the_li);
+               //document.getElementById("money").value=total.toString();
+               document.getElementById("total_price").innerHTML="<li>"+"Total: $"+document.getElementById("money").value+"</li>";
            }
        };
-       
-       xmlhttp.open("GET", "database.php?q=" + ir+"&qnt="+quant[i], true);
+       var kki=ir;
+       xmlhttp.open("GET", "database.php?q=" + kki+"&qnt="+quant[i], true);
        xmlhttp.send();
 
        i++;
